@@ -7,6 +7,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
+            const int NB_MOTS_DE_PASSE = 10;
+
             int longeurMotDePasse = outils.DemanderNombrePositifNonNul("Longueur du mot de passe: ");
 
             Console.WriteLine();
@@ -40,13 +42,17 @@ namespace MyApp // Note: actual namespace depends on the project name.
             int longeurAlphabet = alphabet.Length;
 
 
-            for (int i = 0; i < longeurMotDePasse; i++)
+            for(int j =0; j < NB_MOTS_DE_PASSE; j++)
             {
-                int index = rand.Next(0, longeurAlphabet);
-                motDepasse += alphabet[index];
+                motDepasse = "";
+                for (int i = 0; i < longeurMotDePasse; i++)
+                {
+                    int index = rand.Next(0, longeurAlphabet);
+                    motDepasse += alphabet[index];
+                }
+
+                Console.WriteLine("Mot de passe : " + motDepasse);
             }
-            
-            Console.WriteLine("Mot de passe : " + motDepasse);
         }
     }
 }

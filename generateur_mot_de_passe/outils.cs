@@ -10,10 +10,10 @@ namespace FormationCS
     {
         public static int DemanderNombrePositifNonNul(string question)
         {
-            return DemanderNombreEntre(question, 1, int.MaxValue);
+            return DemanderNombreEntre(question, 1, int.MaxValue, "Erreur: Le nombre doit être positif et non nul");
         }
 
-        public static int DemanderNombreEntre(string question, int min, int max)
+        public static int DemanderNombreEntre(string question, int min, int max, string messageErreurPersonnalise = null)
         {
             int nombre = DemanderNombre(question);
             if ((nombre >= min) && (nombre <= max))
@@ -21,9 +21,16 @@ namespace FormationCS
                 //valide
                 return nombre;
             }
-            Console.WriteLine("ERREUR : le nombre doit être compris entre " + min + " et " + max);
-
-            return DemanderNombreEntre(question, min, max);
+            if(messageErreurPersonnalise == null)
+            {
+                Console.WriteLine("ERREUR : le nombre doit être compris entre " + min + " et " + max);
+            }
+            else
+            {
+                Console.WriteLine(messageErreurPersonnalise);
+            }
+            Console.WriteLine();
+            return DemanderNombreEntre(question, min, max, messageErreurPersonnalise);
         }
 
         public static int DemanderNombre(string question)
@@ -41,6 +48,7 @@ namespace FormationCS
                 catch
                 {
                     Console.WriteLine("Erreur: Vous devez rentrer un nombre");
+                    Console.WriteLine();
                 }
             }
         }
